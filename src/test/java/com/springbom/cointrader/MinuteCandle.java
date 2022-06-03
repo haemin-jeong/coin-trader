@@ -1,79 +1,55 @@
 package com.springbom.cointrader;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
 public class MinuteCandle {
 
-    @JsonProperty("market")
-    private String market;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "minute_candle_id")
+    private Long id;
 
-    @JsonProperty("candle_date_time_utc")
+    @Enumerated(EnumType.STRING)
+    private MarketType marketType;
+
     private LocalDateTime candleDateTimeUtc;
 
-    @JsonProperty("candle_date_time_kst")
     private LocalDateTime candleDateTimeKst;
 
-    @JsonProperty("opening_price")
     private Double openingPrice;
 
-    @JsonProperty("high_price")
     private Double highPrice;
 
-    @JsonProperty("low_price")
     private Double lowPrice;
 
-    @JsonProperty("trade_price")
     private Double tradePrice;
 
     private Long timestamp;
 
-    @JsonProperty("candle_acc_trade_price")
     private Double candleAccTradePrice;
 
-    @JsonProperty("candle_acc_trade_volume")
     private Double candleAccTradeVolume;
 
-
-
-    public String getMarket() {
-        return market;
+    protected MinuteCandle() {
     }
 
-    public LocalDateTime getCandleDateTimeUtc() {
-        return candleDateTimeUtc;
+    public MinuteCandle(Long id, MarketType marketType, LocalDateTime candleDateTimeUtc, LocalDateTime candleDateTimeKst, Double openingPrice, Double highPrice, Double lowPrice, Double tradePrice, Long timestamp, Double candleAccTradePrice, Double candleAccTradeVolume) {
+        this.id = id;
+        this.marketType = marketType;
+        this.candleDateTimeUtc = candleDateTimeUtc;
+        this.candleDateTimeKst = candleDateTimeKst;
+        this.openingPrice = openingPrice;
+        this.highPrice = highPrice;
+        this.lowPrice = lowPrice;
+        this.tradePrice = tradePrice;
+        this.timestamp = timestamp;
+        this.candleAccTradePrice = candleAccTradePrice;
+        this.candleAccTradeVolume = candleAccTradeVolume;
     }
 
-    public LocalDateTime getCandleDateTimeKst() {
-        return candleDateTimeKst;
-    }
-
-    public Double getOpeningPrice() {
-        return openingPrice;
-    }
-
-    public Double getHighPrice() {
-        return highPrice;
-    }
-
-    public Double getLowPrice() {
-        return lowPrice;
-    }
-
-    public Double getTradePrice() {
-        return tradePrice;
-    }
-
-    public Long getTimestamp() {
-        return timestamp;
-    }
-
-    public Double getCandleAccTradePrice() {
-        return candleAccTradePrice;
-    }
-
-    public Double getCandleAccTradeVolume() {
-        return candleAccTradeVolume;
+    public static MinuteCandle of(MarketType marketType, LocalDateTime candleDateTimeUtc, LocalDateTime candleDateTimeKst, Double openingPrice, Double highPrice, Double lowPrice, Double tradePrice, Long timestamp, Double candleAccTradePrice, Double candleAccTradeVolume) {
+        return new MinuteCandle(null, marketType, candleDateTimeUtc, candleDateTimeKst, openingPrice, highPrice, lowPrice, tradePrice, timestamp, candleAccTradePrice, candleAccTradeVolume);
     }
 }
