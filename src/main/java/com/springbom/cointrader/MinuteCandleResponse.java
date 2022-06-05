@@ -35,8 +35,6 @@ public class MinuteCandleResponse {
     @JsonProperty("candle_acc_trade_volume")
     private Double candleAccTradeVolume;
 
-
-
     public String getMarket() {
         return market;
     }

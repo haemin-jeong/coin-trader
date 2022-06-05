@@ -40,7 +40,7 @@ public class UpbitCandleClient {
             results.addAll(minuteCandles);
 
             currentTime = currentTime.minusMinutes(MAX_REQUEST_COUNT * 5);
-            sleep(100);
+            sleep(100L);
         }
 
         return results;
