@@ -1,5 +1,8 @@
 package com.springbom.cointrader;
 
+import com.springbom.cointrader.crawler.dto.MinuteCandleResponse;
+import com.springbom.cointrader.enums.MarketType;
+import com.springbom.cointrader.enums.MinuteType;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;

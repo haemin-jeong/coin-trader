@@ -1,4 +1,8 @@
-package com.springbom.cointrader;
+package com.springbom.cointrader.util;
+
+import com.springbom.cointrader.crawler.dto.MinuteCandleResponse;
+import com.springbom.cointrader.crawler.entity.MinuteCandle;
+import com.springbom.cointrader.enums.MarketType;
 
 public class MinuteCandleConverter {
 

@@ -1,4 +1,4 @@
-package com.springbom.cointrader;
+package com.springbom.cointrader.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;

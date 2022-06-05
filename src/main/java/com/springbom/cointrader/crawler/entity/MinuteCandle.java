@@ -1,4 +1,6 @@
-package com.springbom.cointrader;
+package com.springbom.cointrader.crawler.entity;
+
+import com.springbom.cointrader.enums.MarketType;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

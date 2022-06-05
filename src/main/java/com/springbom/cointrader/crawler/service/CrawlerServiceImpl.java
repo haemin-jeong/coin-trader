@@ -1,5 +1,11 @@
-package com.springbom.cointrader;
+package com.springbom.cointrader.crawler.service;
 
+import com.springbom.cointrader.UpbitCandleClient;
+import com.springbom.cointrader.util.MinuteCandleConverter;
+import com.springbom.cointrader.crawler.entity.MinuteCandle;
+import com.springbom.cointrader.crawler.repository.MinuteCandleRepository;
+import com.springbom.cointrader.enums.MarketType;
+import com.springbom.cointrader.enums.MinuteType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

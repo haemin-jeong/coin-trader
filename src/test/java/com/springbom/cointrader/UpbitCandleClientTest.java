@@ -1,5 +1,11 @@
 package com.springbom.cointrader;
 
+import com.springbom.cointrader.util.MinuteCandleConverter;
+import com.springbom.cointrader.crawler.repository.MinuteCandleRepository;
+import com.springbom.cointrader.crawler.dto.MinuteCandleResponse;
+import com.springbom.cointrader.crawler.entity.MinuteCandle;
+import com.springbom.cointrader.enums.MarketType;
+import com.springbom.cointrader.enums.MinuteType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

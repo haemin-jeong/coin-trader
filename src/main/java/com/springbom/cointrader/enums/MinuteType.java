@@ -1,4 +1,4 @@
-package com.springbom.cointrader;
+package com.springbom.cointrader.enums;
 
 public enum MinuteType {
     ONE(1), THREE(3), FIVE(5), FIFTEEN(15), THIRTEEN(30), HOUR(60);

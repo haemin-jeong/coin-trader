@@ -1,5 +1,8 @@
-package com.springbom.cointrader;
+package com.springbom.cointrader.app;
 
+import com.springbom.cointrader.backtester.BackTester;
+import com.springbom.cointrader.crawler.Crawler;
+import com.springbom.cointrader.trader.Trader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;

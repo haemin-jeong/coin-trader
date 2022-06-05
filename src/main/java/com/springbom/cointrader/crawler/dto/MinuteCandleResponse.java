@@ -1,4 +1,4 @@
-package com.springbom.cointrader;
+package com.springbom.cointrader.crawler.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

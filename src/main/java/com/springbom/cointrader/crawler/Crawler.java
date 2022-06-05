@@ -1,5 +1,8 @@
-package com.springbom.cointrader;
+package com.springbom.cointrader.crawler;
 
+import com.springbom.cointrader.crawler.service.CrawlerService;
+import com.springbom.cointrader.enums.MarketType;
+import com.springbom.cointrader.enums.MinuteType;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

@@ -1,5 +1,6 @@
-package com.springbom.cointrader;
+package com.springbom.cointrader.app;
 
+import com.springbom.cointrader.enums.ExecuteType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

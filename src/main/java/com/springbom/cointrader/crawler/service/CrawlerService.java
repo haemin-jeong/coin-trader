@@ -1,4 +1,7 @@
-package com.springbom.cointrader;
+package com.springbom.cointrader.crawler.service;
+
+import com.springbom.cointrader.enums.MarketType;
+import com.springbom.cointrader.enums.MinuteType;
 
 import java.time.LocalDateTime;
 

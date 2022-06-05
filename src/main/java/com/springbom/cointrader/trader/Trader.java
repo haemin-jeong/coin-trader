@@ -1,4 +1,4 @@
-package com.springbom.cointrader;
+package com.springbom.cointrader.trader;
 
 import org.springframework.stereotype.Component;
 
