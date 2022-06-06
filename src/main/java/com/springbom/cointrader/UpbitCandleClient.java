@@ -16,6 +16,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.springbom.cointrader.util.StreamUtils.distinctByField;
 
 @Component
 public class UpbitCandleClient {
@@ -39,14 +42,30 @@ public class UpbitCandleClient {
 
         while (currentTime.isAfter(from)) {
             int requestCount = getRequestCount(minuteType, from, currentTime);
-            List<MinuteCandleResponse> minuteCandles = getMinuteCandlesByCount(minuteType, marketType, requestCount, currentTime);
+
+            List<MinuteCandleResponse> minuteCandles = getMinuteCandlesByCount(minuteType, marketType, requestCount, currentTime).stream()
+                    .sorted((o1, o2) -> o2.getCandleDateTimeUtc().compareTo(o1.getCandleDateTimeUtc()))
+                    .filter(distinctByField(MinuteCandleResponse::getCandleDateTimeUtc))
+                    .collect(Collectors.toList());
+
             results.addAll(minuteCandles);
 
-            currentTime = currentTime.minusMinutes(MAX_REQUEST_COUNT * 5);
+            currentTime = getLastCandleDateTimeUtc(minuteCandles);
+
             sleep(100L);
         }
 
-        return results;
+        return getFilteredMinuteCandlesBeforeDate(results,from);
+    }
+
+    private List<MinuteCandleResponse> getFilteredMinuteCandlesBeforeDate(List<MinuteCandleResponse> minuteCandleResponses, LocalDateTime targetDateTime) {
+        return minuteCandleResponses.stream()
+                .filter(candle -> !candle.getCandleDateTimeUtc().isBefore(targetDateTime))
+                .collect(Collectors.toList());
+    }
+
+    private LocalDateTime getLastCandleDateTimeUtc(List<MinuteCandleResponse> minuteCandles) {
+        return minuteCandles.get(minuteCandles.size() - 1).getCandleDateTimeUtc();
     }
 
     /**
