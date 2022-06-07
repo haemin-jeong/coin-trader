@@ -3,6 +3,7 @@ package com.springbom.cointrader;
 import com.springbom.cointrader.crawler.dto.MinuteCandleResponse;
 import com.springbom.cointrader.enums.MarketType;
 import com.springbom.cointrader.enums.MinuteType;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +22,11 @@ import java.util.stream.Collectors;
 import static com.springbom.cointrader.util.StreamUtils.distinctByField;
 
 @Component
+@RequiredArgsConstructor
 public class UpbitCandleClient {
 
     private static final int MAX_REQUEST_COUNT = 200;
     private final RestTemplate restTemplate;
-
-    public UpbitCandleClient(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 
     public List<MinuteCandleResponse> getMinuteCandlesByCount(MinuteType minuteType, MarketType marketType, int count, LocalDateTime to) {
         URI uri = getUri(minuteType, marketType, count, to);

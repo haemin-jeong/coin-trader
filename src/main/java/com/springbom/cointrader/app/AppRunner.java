@@ -4,6 +4,7 @@ import com.springbom.cointrader.backtester.BackTester;
 import com.springbom.cointrader.config.ExecuteMode;
 import com.springbom.cointrader.crawler.Crawler;
 import com.springbom.cointrader.trader.Trader;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
@@ -11,6 +12,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class AppRunner implements ApplicationRunner {
 
     private Logger log = LoggerFactory.getLogger(getClass());
@@ -21,14 +23,6 @@ public class AppRunner implements ApplicationRunner {
     private final Crawler crawler;
     private final Trader trader;
     private final BackTester backTester;
-
-    public AppRunner(ExecuteMode mode, AppExiter exiter, Crawler crawler, Trader trader, BackTester backTester) {
-        this.mode = mode;
-        this.exiter = exiter;
-        this.crawler = crawler;
-        this.trader = trader;
-        this.backTester = backTester;
-    }
 
     @Override
     public void run(ApplicationArguments args) {

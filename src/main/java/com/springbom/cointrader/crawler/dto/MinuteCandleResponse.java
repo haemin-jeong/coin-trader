@@ -1,9 +1,11 @@
 package com.springbom.cointrader.crawler.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+@Getter
 public class MinuteCandleResponse {
 
     @JsonProperty("market")
@@ -34,44 +36,4 @@ public class MinuteCandleResponse {
 
     @JsonProperty("candle_acc_trade_volume")
     private Double candleAccTradeVolume;
-
-    public String getMarket() {
-        return market;
-    }
-
-    public LocalDateTime getCandleDateTimeUtc() {
-        return candleDateTimeUtc;
-    }
-
-    public LocalDateTime getCandleDateTimeKst() {
-        return candleDateTimeKst;
-    }
-
-    public Double getOpeningPrice() {
-        return openingPrice;
-    }
-
-    public Double getHighPrice() {
-        return highPrice;
-    }
-
-    public Double getLowPrice() {
-        return lowPrice;
-    }
-
-    public Double getTradePrice() {
-        return tradePrice;
-    }
-
-    public Long getTimestamp() {
-        return timestamp;
-    }
-
-    public Double getCandleAccTradePrice() {
-        return candleAccTradePrice;
-    }
-
-    public Double getCandleAccTradeVolume() {
-        return candleAccTradeVolume;
-    }
 }

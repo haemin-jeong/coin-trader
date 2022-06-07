@@ -6,6 +6,7 @@ import com.springbom.cointrader.crawler.entity.MinuteCandle;
 import com.springbom.cointrader.crawler.repository.MinuteCandleRepository;
 import com.springbom.cointrader.enums.MarketType;
 import com.springbom.cointrader.enums.MinuteType;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,15 +16,11 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
+@RequiredArgsConstructor
 public class CrawlerServiceImpl implements CrawlerService {
 
     private final UpbitCandleClient upbitCandleClient;
     private final MinuteCandleRepository minuteCandleRepository;
-
-    public CrawlerServiceImpl(UpbitCandleClient upbitCandleClient, MinuteCandleRepository minuteCandleRepository) {
-        this.upbitCandleClient = upbitCandleClient;
-        this.minuteCandleRepository = minuteCandleRepository;
-    }
 
     @Override
     @Transactional
