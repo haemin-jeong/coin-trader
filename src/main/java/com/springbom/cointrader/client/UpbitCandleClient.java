@@ -1,4 +1,4 @@
-package com.springbom.cointrader;
+package com.springbom.cointrader.client;
 
 import com.springbom.cointrader.crawler.dto.MinuteCandleResponse;
 import com.springbom.cointrader.enums.MarketType;

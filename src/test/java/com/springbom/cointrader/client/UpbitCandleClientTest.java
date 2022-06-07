@@ -1,6 +1,5 @@
-package com.springbom.cointrader;
+package com.springbom.cointrader.client;
 
-import com.springbom.cointrader.client.UpbitCandleClient;
 import com.springbom.cointrader.crawler.dto.MinuteCandleResponse;
 import com.springbom.cointrader.crawler.entity.MinuteCandle;
 import com.springbom.cointrader.crawler.repository.MinuteCandleRepository;
