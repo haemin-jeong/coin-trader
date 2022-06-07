@@ -1,15 +1,17 @@
 package com.springbom.cointrader;
 
-import com.springbom.cointrader.util.MinuteCandleConverter;
-import com.springbom.cointrader.crawler.repository.MinuteCandleRepository;
+import com.springbom.cointrader.client.UpbitCandleClient;
 import com.springbom.cointrader.crawler.dto.MinuteCandleResponse;
 import com.springbom.cointrader.crawler.entity.MinuteCandle;
+import com.springbom.cointrader.crawler.repository.MinuteCandleRepository;
 import com.springbom.cointrader.enums.MarketType;
 import com.springbom.cointrader.enums.MinuteType;
+import com.springbom.cointrader.util.MinuteCandleConverter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@ActiveProfiles("test")
 @SpringBootTest
 public class UpbitCandleClientTest {
 
