@@ -1,6 +1,7 @@
 package com.springbom.cointrader.app;
 
 import com.springbom.cointrader.backtester.BackTester;
+import com.springbom.cointrader.config.ExecuteMode;
 import com.springbom.cointrader.crawler.Crawler;
 import com.springbom.cointrader.trader.Trader;
 import org.slf4j.Logger;
