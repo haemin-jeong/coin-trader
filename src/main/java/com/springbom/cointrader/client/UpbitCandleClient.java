@@ -1,6 +1,6 @@
 package com.springbom.cointrader.client;
 
-import com.springbom.cointrader.crawler.dto.MinuteCandleResponse;
+import com.springbom.cointrader.crawler.dto.FiveMinuteCandleResponse;
 import com.springbom.cointrader.enums.MarketType;
 import com.springbom.cointrader.enums.MinuteType;
 import lombok.RequiredArgsConstructor;
@@ -28,22 +28,22 @@ public class UpbitCandleClient {
     private static final int MAX_REQUEST_COUNT = 200;
     private final RestTemplate restTemplate;
 
-    public List<MinuteCandleResponse> getMinuteCandlesByCount(MinuteType minuteType, MarketType marketType, int count, LocalDateTime to) {
-        URI uri = getUri(minuteType, marketType, count, to);
-        ResponseEntity<List<MinuteCandleResponse>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<MinuteCandleResponse>>() {});
+    public List<FiveMinuteCandleResponse> getFiveMinuteCandlesByCount(MarketType marketType, int count, LocalDateTime to) {
+        URI uri = getUri(MinuteType.FIVE, marketType, count, to);
+        ResponseEntity<List<FiveMinuteCandleResponse>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<FiveMinuteCandleResponse>>() {});
         return response.getBody();
     }
 
-    public List<MinuteCandleResponse> getMinuteCandlesByPeriod(MinuteType minuteType, MarketType marketType, LocalDateTime from, LocalDateTime to) {
-        List<MinuteCandleResponse> results = new ArrayList<>();
+    public List<FiveMinuteCandleResponse> getFiveMinuteCandlesByPeriod(MarketType marketType, LocalDateTime from, LocalDateTime to) {
+        List<FiveMinuteCandleResponse> results = new ArrayList<>();
         LocalDateTime currentTime = to;
 
         while (currentTime.isAfter(from)) {
-            int requestCount = getRequestCount(minuteType, from, currentTime);
+            int requestCount = getRequestCount(MinuteType.FIVE, from, currentTime);
 
-            List<MinuteCandleResponse> minuteCandles = getMinuteCandlesByCount(minuteType, marketType, requestCount, currentTime).stream()
+            List<FiveMinuteCandleResponse> minuteCandles = getFiveMinuteCandlesByCount(marketType, requestCount, currentTime).stream()
                     .sorted((o1, o2) -> o2.getCandleDateTimeUtc().compareTo(o1.getCandleDateTimeUtc()))
-                    .filter(distinctByField(MinuteCandleResponse::getCandleDateTimeUtc))
+                    .filter(distinctByField(FiveMinuteCandleResponse::getCandleDateTimeUtc))
                     .collect(Collectors.toList());
 
             results.addAll(minuteCandles);
@@ -56,14 +56,14 @@ public class UpbitCandleClient {
         return getFilteredMinuteCandlesBeforeDate(results,from);
     }
 
-    private List<MinuteCandleResponse> getFilteredMinuteCandlesBeforeDate(List<MinuteCandleResponse> minuteCandleResponses, LocalDateTime targetDateTime) {
-        return minuteCandleResponses.stream()
+    private List<FiveMinuteCandleResponse> getFilteredMinuteCandlesBeforeDate(List<FiveMinuteCandleResponse> fiveMinuteCandleResponses, LocalDateTime targetDateTime) {
+        return fiveMinuteCandleResponses.stream()
                 .filter(candle -> !candle.getCandleDateTimeUtc().isBefore(targetDateTime))
                 .collect(Collectors.toList());
     }
 
-    private LocalDateTime getLastCandleDateTimeUtc(List<MinuteCandleResponse> minuteCandles) {
-        return minuteCandles.get(minuteCandles.size() - 1).getCandleDateTimeUtc();
+    private LocalDateTime getLastCandleDateTimeUtc(List<FiveMinuteCandleResponse> fiveMinuteCandles) {
+        return fiveMinuteCandles.get(fiveMinuteCandles.size() - 1).getCandleDateTimeUtc();
     }
 
     /**

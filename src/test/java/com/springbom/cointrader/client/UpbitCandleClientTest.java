@@ -1,10 +1,9 @@
 package com.springbom.cointrader.client;
 
-import com.springbom.cointrader.crawler.dto.MinuteCandleResponse;
-import com.springbom.cointrader.crawler.entity.MinuteCandle;
-import com.springbom.cointrader.crawler.repository.MinuteCandleRepository;
+import com.springbom.cointrader.crawler.dto.FiveMinuteCandleResponse;
+import com.springbom.cointrader.crawler.entity.FiveMinuteCandle;
+import com.springbom.cointrader.crawler.repository.FiveMinuteCandleRepository;
 import com.springbom.cointrader.enums.MarketType;
-import com.springbom.cointrader.enums.MinuteType;
 import com.springbom.cointrader.util.MinuteCandleConverter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,20 +25,20 @@ public class UpbitCandleClientTest {
     UpbitCandleClient upbitCandleClient;
 
     @Autowired
-    MinuteCandleRepository minuteCandleRepository;
+    FiveMinuteCandleRepository minuteCandleRepository;
 
     @Test
     @DisplayName("비트코인 5분봉 가져오기 테스트")
     void getMinuteCandlesByCountTest() {
-        List<MinuteCandleResponse> minuteCandles = upbitCandleClient.getMinuteCandlesByCount(MinuteType.FIVE, MarketType.KRW_BTC, 20, LocalDateTime.now());
+        List<FiveMinuteCandleResponse> minuteCandles = upbitCandleClient.getFiveMinuteCandlesByCount(MarketType.KRW_BTC, 20, LocalDateTime.now());
         assertThat(minuteCandles.size()).isEqualTo(20);
     }
 
     @Test
     @DisplayName("22.5.1 ~ 22.5.31 기간의 비트코인 5분봉 크롤링해서 DB에 저장하기")
     void getMinuteCandlesByPeriodTest() {
-        List<MinuteCandleResponse> minuteCandles = upbitCandleClient.getMinuteCandlesByPeriod(MinuteType.FIVE, MarketType.KRW_BTC, LocalDateTime.of(2022, 5, 1, 0, 0), LocalDateTime.of(2022, 5, 31, 23, 56));
-        List<MinuteCandle> candleEntities = minuteCandles.stream().map(MinuteCandleConverter::toEntity).collect(Collectors.toList());
+        List<FiveMinuteCandleResponse> minuteCandles = upbitCandleClient.getFiveMinuteCandlesByPeriod(MarketType.KRW_BTC, LocalDateTime.of(2022, 5, 1, 0, 0), LocalDateTime.of(2022, 5, 31, 23, 56));
+        List<FiveMinuteCandle> candleEntities = minuteCandles.stream().map(MinuteCandleConverter::convertFiveMinuteCandle).collect(Collectors.toList());
         minuteCandleRepository.saveAll(candleEntities);
     }
 }

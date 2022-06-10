@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class MinuteCandleResponse {
+public class FiveMinuteCandleResponse {
 
     @JsonProperty("market")
     private String market;

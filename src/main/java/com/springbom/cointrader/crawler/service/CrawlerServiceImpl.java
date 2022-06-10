@@ -1,11 +1,10 @@
 package com.springbom.cointrader.crawler.service;
 
 import com.springbom.cointrader.client.UpbitCandleClient;
-import com.springbom.cointrader.util.MinuteCandleConverter;
-import com.springbom.cointrader.crawler.entity.MinuteCandle;
-import com.springbom.cointrader.crawler.repository.MinuteCandleRepository;
+import com.springbom.cointrader.crawler.entity.FiveMinuteCandle;
+import com.springbom.cointrader.crawler.repository.FiveMinuteCandleRepository;
 import com.springbom.cointrader.enums.MarketType;
-import com.springbom.cointrader.enums.MinuteType;
+import com.springbom.cointrader.util.MinuteCandleConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,14 +19,14 @@ import java.util.stream.Collectors;
 public class CrawlerServiceImpl implements CrawlerService {
 
     private final UpbitCandleClient upbitCandleClient;
-    private final MinuteCandleRepository minuteCandleRepository;
+    private final FiveMinuteCandleRepository fiveMinuteCandleRepository;
 
     @Override
     @Transactional
-    public void saveMinuteCandlesByPeriod(MinuteType minuteType, MarketType marketType, LocalDateTime from, LocalDateTime to) {
-        List<MinuteCandle> minuteCandles = upbitCandleClient.getMinuteCandlesByPeriod(minuteType, marketType, from, to).stream()
-                .map(MinuteCandleConverter::toEntity)
+    public void saveFiveMinuteCandlesByPeriod(MarketType marketType, LocalDateTime from, LocalDateTime to) {
+        List<FiveMinuteCandle> minuteCandles = upbitCandleClient.getFiveMinuteCandlesByPeriod(marketType, from, to).stream()
+                .map(MinuteCandleConverter::convertFiveMinuteCandle)
                 .collect(Collectors.toList());
-        minuteCandleRepository.saveAll(minuteCandles);
+        fiveMinuteCandleRepository.saveAll(minuteCandles);
     }
 }
