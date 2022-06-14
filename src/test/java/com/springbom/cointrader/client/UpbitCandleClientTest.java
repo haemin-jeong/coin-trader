@@ -1,8 +1,8 @@
 package com.springbom.cointrader.client;
 
-import com.springbom.cointrader.crawler.dto.FiveMinuteCandleResponse;
-import com.springbom.cointrader.crawler.entity.FiveMinuteCandle;
-import com.springbom.cointrader.crawler.repository.FiveMinuteCandleRepository;
+import com.springbom.cointrader.common.minutecandle.dto.FiveMinuteCandleResponse;
+import com.springbom.cointrader.common.minutecandle.entity.FiveMinuteCandle;
+import com.springbom.cointrader.common.minutecandle.repository.FiveMinuteCandleRepository;
 import com.springbom.cointrader.enums.MarketType;
 import com.springbom.cointrader.util.MinuteCandleConverter;
 import org.junit.jupiter.api.DisplayName;

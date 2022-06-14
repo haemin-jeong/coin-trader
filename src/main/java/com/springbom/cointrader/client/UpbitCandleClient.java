@@ -1,6 +1,6 @@
 package com.springbom.cointrader.client;
 
-import com.springbom.cointrader.crawler.dto.FiveMinuteCandleResponse;
+import com.springbom.cointrader.common.minutecandle.dto.FiveMinuteCandleResponse;
 import com.springbom.cointrader.enums.MarketType;
 import com.springbom.cointrader.enums.MinuteType;
 import lombok.RequiredArgsConstructor;

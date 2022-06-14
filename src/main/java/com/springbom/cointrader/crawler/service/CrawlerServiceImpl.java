@@ -1,8 +1,8 @@
 package com.springbom.cointrader.crawler.service;
 
 import com.springbom.cointrader.client.UpbitCandleClient;
-import com.springbom.cointrader.crawler.entity.FiveMinuteCandle;
-import com.springbom.cointrader.crawler.repository.FiveMinuteCandleRepository;
+import com.springbom.cointrader.common.minutecandle.entity.FiveMinuteCandle;
+import com.springbom.cointrader.common.minutecandle.repository.FiveMinuteCandleRepository;
 import com.springbom.cointrader.enums.MarketType;
 import com.springbom.cointrader.util.MinuteCandleConverter;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.springbom.cointrader.crawler.dto;
+package com.springbom.cointrader.common.minutecandle.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.springbom.cointrader.crawler.entity;
+package com.springbom.cointrader.common.minutecandle.entity;
 
 import com.springbom.cointrader.enums.MarketType;
 import lombok.AccessLevel;
@@ -42,7 +42,7 @@ public class FiveMinuteCandle {
     @Column(name = "trade_price")
     private Double tradePrice;
 
-    @Column(name = "timestamp")
+    @Column(name = "timestamps")
     private Long timestamp;
 
     @Column(name = "cnadle_acc_trade_price")
