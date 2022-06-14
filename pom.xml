@@ -17,13 +17,6 @@
         <java.version>11</java.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>trader-central</id>
-            <url>http://ec2-3-35-218-64.ap-northeast-2.compute.amazonaws.com:8081/repository/maven-releases/</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -75,9 +68,9 @@
             <version>3.19.2</version>
         </dependency>
         <dependency>
-            <groupId>com.trader</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0.0</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math3</artifactId>
+            <version>3.6.1</version>
         </dependency>
     </dependencies>
 
