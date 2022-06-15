@@ -1,3 +1,7 @@
 upbit:
   access-key:
   secret-key:
+
+slack:
+  key:
+  channel:

@@ -1,7 +1,7 @@
 package com.springbom.cointrader.client;
 
 import com.springbom.cointrader.client.dto.UpbitAccountResponse;
-import com.springbom.cointrader.util.TokenGenerator;
+import com.springbom.cointrader.util.UpbitTokenGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -19,7 +19,7 @@ import java.util.List;
 public class UpbitAccountClient {
 
     private final RestTemplate restTemplate;
-    private final TokenGenerator tokenGenerator;
+    private final UpbitTokenGenerator tokenGenerator;
 
     public List<UpbitAccountResponse> getMyAccounts() {
         HttpHeaders headers = new HttpHeaders();
