@@ -52,8 +52,8 @@ public class Wallet {
         return new Wallet(null, market, null, null, null, null, balance, null, null, null);
     }
 
-    public void ask(Double tradePrice, Double commission) {
-        balance = tradePrice * volume - commission;
+    public void ask(Double openingPrice, double commission) {
+        balance = openingPrice * volume - commission;
         volume = null;
         profits = null;
         profitsRate = null;
@@ -63,16 +63,16 @@ public class Wallet {
         valuationAmount = null;
     }
 
-    public void bid(Double tradePrice, Double volume, Double totalBidPrice, Double commission) {
-        balance = 0D;
+    public void bid(Double openingPrice,  double volume, double totalPrice) {
         this.volume = volume;
-        avgBuyPrice = tradePrice;
-        totalPrice = totalBidPrice - commission;
-        valuationAmount = totalBidPrice - commission;
+        this.totalPrice = totalPrice;
 
-        profits = valuationAmount - totalBidPrice;
-        profitsRate = profits / totalBidPrice * 100;
-        maxProfitRate = Objects.isNull(maxProfitRate) ? profitsRate : Math.max(maxProfitRate, profitsRate);
+        avgBuyPrice = openingPrice;
+        valuationAmount = totalPrice;
+        balance = 0.0D;
+        profits = 0.0D;
+        profitsRate = 0.0D;
+        maxProfitRate  = Objects.isNull(maxProfitRate) ? profitsRate : maxProfitRate;
     }
 
     public void fetch(Double tradePrice) {
