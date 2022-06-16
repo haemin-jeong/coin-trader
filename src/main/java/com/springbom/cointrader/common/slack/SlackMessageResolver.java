@@ -2,6 +2,7 @@ package com.springbom.cointrader.common.slack;
 
 import com.springbom.cointrader.enums.MarketType;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public interface SlackMessageResolver {
     static String resolveBidOrder(MarketType market, Double volume, Double price, Double commission, LocalDateTime candleDateTime) {
@@ -31,7 +32,7 @@ public interface SlackMessageResolver {
     static String resolveEndBackTest(Double balance, Double profitRate, Double maxProfitRate) {
         return "[백테스트 종료 알림]" + "\n" +
                 "잔액: " + balance + "\n" +
-                "최종 수익률:" + profitRate + "\n" +
-                "최대 수익률: " + maxProfitRate;
+                "최종 수익률:" + (Objects.isNull(profitRate) ? "X" : profitRate) + "\n" +
+                "최대 수익률: " + (Objects.isNull(maxProfitRate) ? "X" : maxProfitRate);
     }
 }

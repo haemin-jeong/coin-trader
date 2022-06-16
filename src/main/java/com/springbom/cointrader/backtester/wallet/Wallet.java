@@ -57,7 +57,6 @@ public class Wallet {
         volume = null;
         profits = null;
         profitsRate = null;
-        maxProfitRate = null;
         avgBuyPrice = null;
         totalPrice = null;
         valuationAmount = null;
@@ -72,7 +71,6 @@ public class Wallet {
         balance = 0.0D;
         profits = 0.0D;
         profitsRate = 0.0D;
-        maxProfitRate  = Objects.isNull(maxProfitRate) ? profitsRate : maxProfitRate;
     }
 
     public void fetch(Double tradePrice) {
@@ -83,7 +81,7 @@ public class Wallet {
         valuationAmount = tradePrice * getVolume();
         profits = valuationAmount - totalPrice;
         profitsRate = profits / getTotalPrice() * 100;
-        maxProfitRate = Math.max(maxProfitRate, profitsRate);
+        maxProfitRate = Objects.isNull(maxProfitRate) ? profitsRate : Math.max(maxProfitRate, profitsRate);
     }
 
     public boolean isAskable() {
